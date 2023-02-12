@@ -1,0 +1,32 @@
+{
+  "author": {
+    "name": "Raul-Sebastian Mihăilă",
+    "email": "raul.mihaila@gmail.com"
+  },
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development webpack serve",
+    "build": "cross-env NODE_ENV=production webpack --progress"
+  },
+  "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "classnames": "^2.3.1",
+    "copy-webpack-plugin": "^9.0.1",
+    "crizmas-components": "^2.0.3",
+    "crizmas-form": "^2.0.1",
+    "crizmas-mvc": "^2.0.3",
+    "crizmas-router": "^2.0.3",
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.3.2",
+    "marked": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "smart-mix": "^2.0.1",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0"
+  }
+}
