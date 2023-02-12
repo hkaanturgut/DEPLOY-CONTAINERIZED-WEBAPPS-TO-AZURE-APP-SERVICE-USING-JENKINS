@@ -9,11 +9,11 @@ service_plan_os_type    = "Linux"
 linux_webapp_name     = "chrizmas-mvc-app-webapp"
 always_on= true
 docker_image= "crizmasmvcapp"
-docker_image_tag= "latest"
+docker_image_tag= "10"
 app_settings= {
-           "DOCKER_REGISTRY_SERVER_PASSWORD"     = "A1Jykvs/2nEBb2TSJ1+v/RNZ0uLk9c37ihZHP/7NXk+ACRBhSTm6"
-           "DOCKER_REGISTRY_SERVER_URL"          = "https://azdevopsacrkaan.azurecr.io"
-           "DOCKER_REGISTRY_SERVER_USERNAME"     = "azdevopsacrkaan"
+           "DOCKER_REGISTRY_SERVER_PASSWORD"     = "hx+MC269ugjt+X/V/LsIuCjVdIuch6tfYKyq2Qdpi3+ACRB5H0Hr"
+           "DOCKER_REGISTRY_SERVER_URL"          = "https://jenkinsacrkaan.azurecr.io"
+           "DOCKER_REGISTRY_SERVER_USERNAME"     = "jenkinsacrkaan"
            "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     }
 
