@@ -2,7 +2,7 @@
 
 - Welcome to this comprehensive guide on deploying five web applications to Azure App Service using Jenkins. This Readme provides detailed instructions on the process, ensuring seamless and efficient deployment for all five applications.
 
-    - Although each application has its own dedicated Readme, the steps outlined here apply uniformly to all of them. 
+    - Even each app does not have a Readme , the steps outlined here apply uniformly to all of them. 
     
 #
 
