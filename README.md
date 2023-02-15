@@ -72,6 +72,17 @@ Prerequisites :
 #
 
 6- Starting our pipeline firstly by checking our code from the repository
+     
+        - pipeline{
+    agent any
+    stages{
+        stage('git checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/hkaanturgut/Tetris-App-Jenkins.git']])
+            }
+         }
+      }
+    }
 
 ![Screenshot 2023-02-10 at 12 17 52 PM](https://user-images.githubusercontent.com/113396342/218911409-4a5a20ab-c775-4b22-8ea2-aa63cfb6343e.png)
 
@@ -82,6 +93,20 @@ Prerequisites :
 
 7- Build Docker image and push it to the ACR
 
+        - stage('build docker image'){
+            steps{
+                sh 'docker build -t jenkinsacrkaan.azurecr.io/tetris .'
+            }
+        }
+        stage('push image'){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'ACR', passwordVariable: 'password', usernameVariable: 'username')]) {
+                sh 'docker login -u ${username} -p ${password} jenkinsacrkaan.azurecr.io'
+                sh 'docker push jenkinsacrkaan.azurecr.io/tetris'
+                }
+            }
+        }
+        
 ![Screenshot 2023-02-10 at 12 22 28 PM](https://user-images.githubusercontent.com/113396342/218911871-2115090e-9485-4b5c-9ee7-6e07d8884fdc.png)
 
    - Click Build Now and the image is build and pushed to the ACR
@@ -93,6 +118,17 @@ Prerequisites :
 #
 
 8- Install Azure CLI into the pipeline
+
+        - stage('install Azure CLI'){
+            steps{
+                sh '''
+                apk add py3-pip
+                apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+                pip install --upgrade pip
+                pip install azure-cli
+                '''
+            }
+        }
 
 ![Screenshot 2023-02-10 at 12 28 06 PM](https://user-images.githubusercontent.com/113396342/218912113-15f70626-9a53-4e05-9937-0958d6c71fbd.png)
 
@@ -111,6 +147,17 @@ Prerequisites :
 
 
 ### Deploy to Web App
+
+         - stage('deploy web app'){
+            steps{
+                withCredentials([azureServicePrincipal('azureServicePrincipal')]) {
+                sh 'az login --service-principal -u ${AZURE_CLIENT_ID} -p ${AZURE_CLIENT_SECRET} --tenant ${AZURE_TENANT_ID}'
+                }
+                withCredentials([usernamePassword(credentialsId: 'ACR', passwordVariable: 'password', usernameVariable: 'username')]) {
+                sh 'az webapp config container set --name tetris-game-webapp --resource-group Tetris-App-RG --docker-custom-image-name jenkinsacrkaan.azurecr.io/tetris:latest --docker-registry-server-url https://jenkinsacrkaan.azurecr.io --docker-registry-server-user ${username} --docker-registry-server-password ${password}'
+                }
+            }
+        }
 
 ![Screenshot 2023-02-10 at 12 46 20 PM](https://user-images.githubusercontent.com/113396342/218912979-41837393-ea3d-4fef-8901-fb55ade5c0b3.png)
 
