@@ -180,7 +180,7 @@ Prerequisites :
 
 ![image](https://user-images.githubusercontent.com/113396342/218913540-1439882a-3208-43ef-9a03-fd9cea84dc96.png)
 
-## Thanks for your time and I hope this will be helpful at some point! Good luck ...
+## Thank you for taking the time to read this blog.I hope that the information provided here proves to be useful in your efforts to efficiently deploy your applications. Best of luck.
 
 
 
